@@ -1,6 +1,6 @@
 import os
 
-value_to_input = "9"
+value_to_input = "1"
 
 def import_sudoku():
 	with open("sudoku.txt") as f:
@@ -11,20 +11,7 @@ def import_sudoku():
 	return sudoku
 
 sudoku = import_sudoku()
-print(sudoku) #fonction variadique
-
-
-def unsolved_point():
-	empty = 0
-	find = 0
-	for x in range(9):
-		for y in range(9):
-			if sudoku[x][y] == ".":
-				empty += 1
-			else:
-				find += 1
-
-unsolved_point()
+print(sudoku)
 
 
 def grid_index(grid, value):
@@ -37,19 +24,16 @@ def grid_index(grid, value):
 
 def can_fill_cell(sudoku, coords):
 	row = sudoku[0]
-
 	for cell in row:
 		if cell == value_to_input:
 			return False
 
 	column = [row[0] for row in sudoku]
-
 	for cell in column:
 		if cell == value_to_input:
 			return False
 
 	square = [sudoku[x][y] for x in range(3) for y in range(3)]
-
 	for cell in square:
 		if cell == value_to_input:
 			return False
@@ -58,12 +42,15 @@ def can_fill_cell(sudoku, coords):
 
 
 def solve_next_unsolved(sudoku):
-	coords = grid_index(sudoku, ".")
-
+	"""
+	for x in range(9):
+		for y in range(9):
+			coords = x,y
+	"""
+	coords = (2,2)
 	if can_fill_cell(sudoku, coords):
-		sudoku[coords[0]][coords[0]] = value_to_input
-
-	print(sudoku)
+		sudoku[coords[0]][coords[1]] = value_to_input
+		print(sudoku)
 
 
 solve_next_unsolved(sudoku)
