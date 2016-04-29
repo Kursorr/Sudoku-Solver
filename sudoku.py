@@ -2,6 +2,13 @@ import os
 
 value_to_input = "1"
 
+
+def show_sudoku(sudoku):
+	for i in sudoku:
+		print(i)
+	print("\n")
+
+
 def import_sudoku():
 	with open("sudoku.txt") as f:
 		lines = f.read()
@@ -11,7 +18,7 @@ def import_sudoku():
 	return sudoku
 
 sudoku = import_sudoku()
-print(sudoku)
+show_sudoku(sudoku)
 
 
 def grid_index(grid, value):
@@ -42,15 +49,10 @@ def can_fill_cell(sudoku, coords):
 
 
 def solve_next_unsolved(sudoku):
-	"""
-	for x in range(9):
-		for y in range(9):
-			coords = x,y
-	"""
 	coords = (2,2)
 	if can_fill_cell(sudoku, coords):
 		sudoku[coords[0]][coords[1]] = value_to_input
-		print(sudoku)
+		show_sudoku(sudoku)
 
 
 solve_next_unsolved(sudoku)
